@@ -1,0 +1,7 @@
+{
+  "image": "mcr.microsoft.com/vscode/devcontainers/java:11",
+  "features": {
+    "maven": "latest"
+  },
+  "postCreateCommand": "java -version"
+}
