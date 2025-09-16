@@ -18,9 +18,27 @@ public class Projeto1 {
 	}
     
     //metódos estáticos de cada opção do menu
-    static void inicializarBase() {}
+    static void inicializarBase() {
+		idsProdutos = {101, 203, 401}
+		nomesProdutos = {"Mouse Game", "Teclado Mecanico", "Headset 7.1", "Fone"}
+		precosProdutos = {150.00, 350.00, 420.50, 250.90}
+		estoquesProdutos = {2, 1, 1, 0}
 
-    static void catalogoProdutos() {}
+		vendaAtualIds = {}
+		vendaAtualQuantidades = {}
+
+		historicoIdsPedidos = {}
+		historicoValoresPedidos = {}
+		historicoItensVendidos = {}{3}
+
+        System.out.print("Base iniciada com sucesso!");
+    }
+
+    static void catalogoProdutos() {
+        System.out.ptint("Lista de produtos com estoque positivo:")
+        
+
+    }
 
     static void adicionarItem() {}
 
@@ -55,8 +73,57 @@ public class Projeto1 {
     int[][] historicoItensVendidos = new int[MaxProdutos][3];
       
     public static void main(String[] agrs) { 
-        
-        
+        Scanner input = new Scanner(System.in)
+        int escolhaMenu = new int
+        menuOpcoes()
+        System.out.print("Selecione uma opção (obrigatório iniciar base primeiro):")
+        escolhaMenu = input.nextInt()
+        /* a primeira escolha precisa ser 1, como fazer?
+        while escolhaMenu != 1 {
+            System.err.println("Erro, obrigatório iniciar base primeiro");
+            System.out.print("Selecione outra opção:")
+            escolhaMenu = input.nextInt()
+        }
+        */
+        if escolhaMenu == 0 {
+            System.out.print("Programa encerrado com sucesso!");
+        }
 
+        while (escolhaMenu != 0) {
+            System.out.print("Selecione outra opção:")
+            escolhaMenu = input.nextInt()
+            switch (escolhaMenu) {
+             case 1:  
+              inicializarBase();
+              break;
+             case 2:
+                catalogoProdutos();
+                break;
+             case 3:  
+                adicionarItem();
+                break;
+             case 4:  
+                resumoAtual();
+                break;
+             case 5:  
+                finalizarVenda();
+                break;
+             case 6:  
+                historicoVendas();
+                break;
+             case 7:
+                vendaEspecifica();  
+                break;
+             case 8:  
+                reporEstoque();
+                break;
+             case 9:  
+                relatorioEstoque();
+                break;
+             default: 
+                System.out.println("Número inválido");
+                break;
+            }
+        }
     }
 }
