@@ -19,7 +19,7 @@ public class Projeto1 {
     
     //metódos estáticos de cada opção do menu
     static void inicializarBase() {
-		idsProdutos = {101, 203, 401}
+		idsProdutos = {101, 203, 301, 401}
 		nomesProdutos = {"Mouse Game", "Teclado Mecanico", "Headset 7.1", "Fone"}
 		precosProdutos = {150.00, 350.00, 420.50, 250.90}
 		estoquesProdutos = {2, 1, 1, 0}
@@ -30,13 +30,21 @@ public class Projeto1 {
 		historicoIdsPedidos = {}
 		historicoValoresPedidos = {}
 		historicoItensVendidos = {}{3}
+		base = true;
 
         System.out.print("Base iniciada com sucesso!");
     }
 
     static void catalogoProdutos() {
-        System.out.ptint("Lista de produtos com estoque positivo:")
-        
+        if(base == false){
+			System.out.println("Antes de continuar, inicialize a base!");
+		}
+		System.out.print("Lista de produtos com estoque positivo:")
+		System.out.println("\nID |       Produto      | Valor unitário  | Estoque ");
+        System.out.println("-----------------------------------------------");
+		for (int i = 0; i < idsProdutos.length; i++) {
+			
+		}
 
     }
 
