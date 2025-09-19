@@ -71,6 +71,7 @@ public class Projeto1 {
     int[] idsProdutos = new int[MaxProdutos], estoquesProdutos = new int[MaxProdutos];
     String[] nomesProdutos = new String[MaxProdutos];
     double[] precosProdutos = new double[MaxProdutos];
+    boolean base = new boolean;
 
     //venda atual
     int[] vendaAtualIds = new int[MaxProdutos],  vendaAtualQuantidades = new int[QuantCadaProduto];
@@ -81,25 +82,12 @@ public class Projeto1 {
     int[][] historicoItensVendidos = new int[MaxProdutos][3];
       
     public static void main(String[] agrs) { 
-        Scanner input = new Scanner(System.in)
-        int escolhaMenu = new int
-        menuOpcoes()
-        System.out.print("Selecione uma opção (obrigatório iniciar base primeiro):")
-        escolhaMenu = input.nextInt()
-        /* a primeira escolha precisa ser 1, como fazer?
-        while escolhaMenu != 1 {
-            System.err.println("Erro, obrigatório iniciar base primeiro");
-            System.out.print("Selecione outra opção:")
-            escolhaMenu = input.nextInt()
-        }
-        */
-        if escolhaMenu == 0 {
-            System.out.print("Programa encerrado com sucesso!");
-        }
-
-        while (escolhaMenu != 0) {
-            System.out.print("Selecione outra opção:")
-            escolhaMenu = input.nextInt()
+        Scanner input = new Scanner(System.in);
+        int escolhaMenu = new int;
+        do {
+            menuOpcoes();
+            System.out.print("Selecione uma opção (obrigatório iniciar base primeiro):");
+            escolhaMenu = input.nextInt();
             switch (escolhaMenu) {
              case 1:  
               inicializarBase();
@@ -130,8 +118,9 @@ public class Projeto1 {
                 break;
              default: 
                 System.out.println("Número inválido");
-                break;
             }
-        }
+            
+        } while (escolhaMenu != 0);
+        entrada.close();
     }
 }
