@@ -18,7 +18,7 @@ public class Projeto1 {
 	}
     
     //metódos estáticos de cada opção do menu
-    static void inicializarBase() {
+    static boolean inicializarBase() {
 		idsProdutos = {101, 203, 301, 401}
 		nomesProdutos = {"Mouse Game", "Teclado Mecanico", "Headset 7.1", "Fone"}
 		precosProdutos = {150.00, 350.00, 420.50, 250.90}
@@ -43,16 +43,35 @@ public class Projeto1 {
 		System.out.println("\nID |       Produto      | Valor unitário  | Estoque ");
         System.out.println("-----------------------------------------------");
 		for (int i = 0; i < idsProdutos.length; i++) {
+			if((idsProdutos[i] != 0 && estoquesProdutos[i] > 0) {
+				System.out.printf("%d | %s | R$ %.2f | %d\n",idsProdutos[i], nomesProdutos[i], precosProdutos[i], estoquesProdutos[i]);
+			}
 			
 		}
 
     }
 
-    static void adicionarItem() {}
+    static void adicionarItem() {
+		 if(base == false){
+			System.out.println("Antes de continuar, inicialize a base!");
+		} 
+		System.out.print("Digite o ID do produto: ");
+        int id = entrada.nextInt();
+        System.out.print("Digite a quantidade: ");
+        int quantidade = entrada.nextInt();
+	}
 
-    static void resumoAtual() {}
+    static void resumoAtual() {
+		if(vendaAtualCont == 0){
+			System.out.println("Nenhum item na venda atual.");
+		}
+	}
 
-    static void finalizarVenda() {}
+    static void finalizarVenda() {
+		if(vendaAtualCont == 0){
+			System.out.println("Nenhum item na venda atual.");
+		}
+	}
 
     static void historicoVendas() {}
 
@@ -75,13 +94,14 @@ public class Projeto1 {
 
     //venda atual
     int[] vendaAtualIds = new int[MaxProdutos],  vendaAtualQuantidades = new int[QuantCadaProduto];
+	int vendaAtualCont = 0;
 
     //Histórico de Vendas
     int[] historicoIdsPedidos = new int[MaxProdutos];
     double[] historicoValoresPedidos = new double[MaxProdutos];
     int[][] historicoItensVendidos = new int[MaxProdutos][3];
       
-    public static void main(String[] agrs) { 
+    public static void main(String[] args) { 
         Scanner input = new Scanner(System.in);
         int escolhaMenu = new int;
         do {
