@@ -193,29 +193,42 @@ public class ProjetoLaura {
 		}
 	}
 
-    //ITEM 8
-    static void reporEstoque() {
+    //ITEM 8 
+    static void reporEstoque(int[] idsProdutos, int[] estoquesProdutos) {
 		// Solicita um ID de produto e uma quantidade	
-		System.out.print("Digite um ID de produto:");
+		System.out.print("Digite o ID do produto que deseja repor estoque:");
 		int idDigitado = input.nextInt();
+        int indiceID = -1;
+        for(i = 0; i < idsProdutos.lenght; i++) {
+            if (idsProdutos[i] == idDigitado) {
+                indiceID = i;
+                break; // para o laço e sai dele
+            }
+        }
 
-		System.out.print("Digite a quantidade:");
+        if (indiceID == -1) {
+            System.out.println("ID inválido!");
+            return; // sai do método aqui, não pergunta quantidade
+        }
+
+		System.out.print("Digite a nova quantidade de estoque:");
 		int quant = input.nextInt();
+        estoqueProdutos[indiceID] += quant;
 
-		//Adiciona a quantidade no estoque no produto certo
-		
+        System.out.println("Estoque atualizado! "\n "ID:" +idDigitado + "Novo Estoque:" + estoquesProdutos[indiceID]);
+
 	}
     
     //ITEM 9
-    static void relatorioEstoqueBaixo() {
-		 //Imprime uma lista de todos os produtos cujo estoque esteja abaixo de um limiar pré-definido (ex: 10 unidades)
-		System.out.println("---LISTA DE PRODUTOS COM ESTOQUE ABAIXO DO LIMITE---")
-		for (int p = 0; p < estoquesProdutos.lenght; p++){
-			if (estoquesProdutos[p] < //limite){
-				System.out.println(//produto, id, quantidade talvez)
-		]
-	}
+    static void relatorioEstoqueBaixo(int[] idsProdutos, String[] nomesProdutos, int[] estoquesProdutos) {
+        System.out.println("--- LISTA DE PRODUTOS COM ESTOQUE ABAIXO DO LIMITE ---");
 
+        for (int p = 0; p < estoquesProdutos.length; p++) {
+            if (estoquesProdutos[p] < 10) {
+                System.out.println("ID: " + idsProdutos[p] + " | Nome: " + nomesProdutos[p] + " | Estoque: " + estoquesProdutos[p]);
+            }
+        }
+    }
 
     //Catálogo de produtos, ESTA FALTANDO DIZER A QUANTIDAD DE POSICOES EM CADA ARRAY!
     //  (OBRIGATÓTIO EM JAVA DETERMINAR O TAMANHO DA LISTA)!
