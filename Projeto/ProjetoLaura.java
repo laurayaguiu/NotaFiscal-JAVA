@@ -222,16 +222,27 @@ public class ProjetoLaura {
 	}
 
     //ITEM 7
-    static void vendaEspecifica() {
+    static void vendaEspecifica(int[][] historicoItensVendidos) {
 		//Solicita o ID do pedido
 		System.out.print("Digite o ID de Pedido:");
-		int idPedido = input.nextInt();
+		int idPedidoBuscado = input.nextInt();
+
+		//Cabeçalho da nota fiscal
+		System.out.printf("--Nota Fiscal do Pedido %d--\n", idPedidoBuscado);
+		
 
 		//Percorre a matriz historicoItensVendidos e encontra todos os itens do pedido
-		while (//estiver na linha do pedido, armazenar o item){
+		for(int i = 0; i <  historicoItensVendidos.lenght; i++){
+			int idDoProduto = historicoItensVendidos[i][0];
+			int idDoProduto = historicoItensVendidos[i][1];
+			int quantidadeVendida = historicoItensVendidos[i][2];
+			if(idDoPedido == idPedidoBuscado){
+				notaFiscal(
+			
 			
 		//Reimprime a nota fiscal completa da transação 
-		notaFiscal(//parâmetros) -> chamar o método nota fiscal de novo?
+		imprimirNotaFiscal(int pedidoId, double totalVenda)
+			}
 		}
 	}
 
