@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class ProjetoLaura {
     // método estático que representa o menu
-      static void menuOpcoes() {   //não deveria ter um public?
+      static void menuOpcoes() {   
         System.out.println("""
         =========== MENU ===========
 		1. Inicializar base
@@ -19,12 +19,11 @@ public class ProjetoLaura {
     
     // ITEM 2
     static void inicializarBase(int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos) {
-        idsProdutos[0] = 101; nomesProdutos[0] = "Mouse Game"; precosProdutos[0] = 150.00; estoquesProdutos[0] = 2;
-        idsProdutos[1] = 203; nomesProdutos[1] = "Teclado Mecanico"; precosProdutos[1] = 350.00; estoquesProdutos[1] = 1;
+        idsProdutos[0] = 101; nomesProdutos[0] = "Mouse Game"; precosProdutos[0] = 150.00; estoquesProdutos[0] = 2; // quantidade em estoque
+        idsProdutos[1] = 203; nomesProdutos[1] = "Teclado Mecanico"; precosProdutos[1] = 350.00; estoquesProdutos[1] = 1; 
         idsProdutos[2] = 301; nomesProdutos[2] = "Headset 7.1"; precosProdutos[2] = 420.50; estoquesProdutos[2] = 1;
         idsProdutos[3] = 401; nomesProdutos[3] = "Fone"; precosProdutos[3] = 250.90; estoquesProdutos[3] = 0;
 
-		// base = true; valida a inicialização da base ,coloquei no main
 
         System.out.print("Base iniciada com sucesso!"); 
     }
@@ -35,8 +34,8 @@ public class ProjetoLaura {
 		System.out.println("\nID |       Produto      | Valor unitário  | Estoque ");
         System.out.println("-------------------------------------------------------");
 		//Percorre os produtos e imprime os que estão com estoque positivo
-		for (int i = 0; i < idsProdutos.length; i++) {
-			if(idsProdutos[i] != 0 && estoquesProdutos[i] > 0) {
+		for (int i = 0; i < idsProdutos.length; i++) { 
+			if(idsProdutos[i] != 0 && estoquesProdutos[i] > 0) { //
 				System.out.printf("%d   |      %s       |      R$ %.2f    |     %d\n",idsProdutos[i], nomesProdutos[i], precosProdutos[i], estoquesProdutos[i]);
 			}
 			
@@ -49,11 +48,14 @@ public class ProjetoLaura {
         System.out.print("Digite o ID do produto: ");
         int id = entrada.nextInt();
 
-        // Verifica se o ID existe e pega o índice onde ele 
-        int indiceProduto = -1; // numero falso
-        for (int i = 0; i < idsProdutos.length; i++) {
+        // Verifica se o ID existe no vetor de produtos  
+        
+		int indiceProduto = -1;  //-1 é um sinal de que ainda não achamos nada (pois não existe posição -1 em um vetor).
+		//Se no final do loop continuar -1, quer dizer que o produto não existe.
+        
+			for (int i = 0; i < idsProdutos.length; i++) { //percorre a lista
             if (idsProdutos[i] == id) {
-                indiceProduto = i; // indice do produto q está o ID informado
+                indiceProduto = i; //guarda o indice onde o produto foi encontrado
                 break;
             }
         }
@@ -63,34 +65,23 @@ public class ProjetoLaura {
             return;
         }
 
-        // Pede a quantidade
+        // O usuario informa quantas unidades quer comprar
         System.out.print("Digite a quantidade: ");
         int quantidade = entrada.nextInt();
 
-        // "Se dentro da lisa estoqueProdutos no indice que corresponde ao ID informado a quantidade é menor q a solicitada"
+        // Checar se o estoque é suficiente
+		// Se o estoque disponível (estoquesProdutos[indiceProduto]) for menor do que a quantidade desejada, não deixa comprar.
         if (estoquesProdutos[indiceProduto] < quantidade) {
             System.out.println("Estoque insuficiente!");
             return;
         }
 
-        // Encontra a primeira posição vazia na lista da venda atual
-        int indiceVenda = -1; // numero falso
-        for (int i = 0; i < vendaAtualIds.length; i++) {
-            if (vendaAtualIds[i] == 0) { 
-                indiceVenda = i; // indice vazio
-                break;
-            }
-        }
-
-        if (indiceVenda == -1) {
-            System.out.println("Não há espaço para adicionar mais itens na venda!");
-            return;
-        }
 
         // Adiciona o item aos vetores da venda atual
         vendaAtualIds[indiceVenda] = id;
         vendaAtualQuantidades[indiceVenda] = quantidade;
-        vendaAtualCont++; // incrementa o contador global, essa linha foi o chat q encrementou para mim ent não entendi direito como funciona
+        vendaAtualCont++; // contador global de quantos itens já foram adicionados na venda atual
+		 // Toda vez que você adiciona um item, ele soma +1.
 
         System.out.println("Item adicionado com sucesso!");
     }
@@ -100,7 +91,7 @@ public class ProjetoLaura {
     static void resumoAtual(int[] vendaAtualIds, String[] nomesProdutos, double[] precosProdutos, int[] vendaAtualQuantidades) {
         if (vendaAtualCont == 0) {
             System.out.println("Nenhum item na venda atual.");
-            return; // termina funçao j´q nao tem item 
+            return; //
         }
 
         System.out.println("\nID | Produto        | Quantidade | VL. UNIT. | VL. TOTAL");
@@ -108,13 +99,13 @@ public class ProjetoLaura {
 
         double totalVenda = 0;
 
-        for (int i = 0; i < vendaAtualCont; i++) {
+        for (int i = 0; i < vendaAtualCont; i++) { //Percorre os itens da venda atual
             int id = vendaAtualIds[i];
             int quantidade = vendaAtualQuantidades[i];
 
             // Encontra o índice do produto para pegar nome e preço
-            int indiceProduto = -1;
-            for (int j = 0; j < nomesProdutos.length; j++) {
+            int indiceProduto = -1;  
+            for (int j = 0; j < nomesProdutos.length; j++) {  
                 if (idsProdutos[j] == id) {
                     indiceProduto = j;
                     break;
@@ -139,31 +130,82 @@ public class ProjetoLaura {
 		//Verifica se existe algum produto na venda atual
 		if(vendaAtualCont == 0){ 
 			System.out.println("Nenhum item na venda atual.");
+			return;
 		}
 
 		//Gera um novo ID para o pedido
+		int pedidoId = proximoPedidoId++;
+        double totalVenda = 0;
 
-		//Salva o ID do pedido 
-		historicoIdsPedidos = //salvar Id
+		//cada venda finalizada fica registrada no vetor de IDs de pedidos. 
+		historicoIdsPedidos[historicoCont] = pedidoId;  
+		
+		for (int i = 0; i < vendaAtualCont; i++) { //Pega o ID e a quantidade do item na venda atual
+            int id = vendaAtualIds[i];
+            int qtd = vendaAtualQuantidades[i];
 
-		//Salva o valor total do pedido
-		historicoValoresPedidos = //salvar valor total
+			int indiceProduto = -1;
+            for (int j = 0; j < idsProdutos.length; j++) { //Encontra o índice do produto no catálogo (idsProdutos) para acessar preço e estoque
+                if (idsProdutos[j] == id) {
+                    indiceProduto = j;
+                    break;
+                }
+            }
+
+			double preco = precosProdutos[indiceProduto];
+            double subtotal = preco * qtd;
+            totalVenda += subtotal;
 			
-		//Para cada item na venda atual, adiciona uma linha na matriz historicoItensVendidos
+			// Registra no histórico de itens vendidos
+			// Cada linha da matriz historicoItensVendidos guarda [ID do Pedido, ID do Produto, Quantidade].
+			// O índice historicoCont * MAX_PRODUTOS + i garante que cada venda ocupe um bloco diferente da matriz.
+			historicoItensVendidos[historicoCont * MAX_PRODUTOS + i][0] = pedidoId; 
+            historicoItensVendidos[historicoCont * MAX_PRODUTOS + i][1] = id;
+            historicoItensVendidos[historicoCont * MAX_PRODUTOS + i][2] = qtd;
 
-		// Debita a quantidade do estoquesProdutos
-
-		//Chama o método para imprimir a nota fiscal formatada
-		notaFiscal(//parâmentros);
-
-		//Limpa os vetores da venda atual, deixando o sistema pronto para a próxima transação
-		vendaAtualCont = 0 //não seria 2 arrays, com a quantidade e o id?
-	}
-	public static void notaFiscal(){
-
-		//Imprimir a nota fiscal do jeito que ele pediu -> usando printf()
+			estoquesProdutos[indiceProduto] -= qtd; // Subtrai a quantidade vendida do estoque do produto.
 
 	}
+		
+			historicoValoresPedidos[historicoCont] = totalVenda; //Salva o valor total no histórico
+     		historicoCont++; // Para que próximo pedido seja registrado na próxima posição.
+
+	imprimirNotaFiscal(pedidoId, totalVenda);
+
+        vendaAtualCont = 0; // Limpa a venda atual (carrinho)
+        System.out.println("Venda finalizada com sucesso!\n");
+    }
+	
+	public static void imprimirNotaFiscal(int pedidoId, double totalVenda){
+		
+		System.out.println("\n========= NOTA FISCAL =========");
+        System.out.println("Pedido nº " + pedidoId);
+        System.out.println("ID | Produto        | Quantidade | VL. UNIT. | VL. TOTAL");
+        System.out.println("---------------------------------------------------------");
+
+        for (int i = 0; i < vendaAtualCont; i++) { //Percorre todos os itens que o cliente adicionou à venda atual
+            int id = vendaAtualIds[i];
+            int qtd = vendaAtualQuantidades[i];
+			int indiceProduto = -1; //Indica que ainda não encontramos o produto no catálogo.
+            for (int j = 0; j < idsProdutos.length; j++) { //Procura a posição do produto no catálogo para acessar nome e preço.
+                if (idsProdutos[j] == id) {
+                    indiceProduto = j;
+                    break;
+                }
+            }
+			String nome = nomesProdutos[indiceProduto];
+            double preco = precosProdutos[indiceProduto];
+            double subtotal = preco * qtd;
+
+            System.out.printf("%d | %-12s | %d | R$ %.2f | R$ %.2f\n", id, nome, qtd, preco, subtotal);
+        }
+
+        System.out.println("---------------------------------------------------------");
+        System.out.printf("TOTAL: R$ %.2f\n", totalVenda);
+        System.out.println("===============================\n");
+    }
+
+	
 
     //ITEM 6
     static void historicoitensVendidos() { //matriz
