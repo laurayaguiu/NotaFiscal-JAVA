@@ -175,7 +175,7 @@ public class ProjetoLaura {
         vendaAtualCont = 0; // Limpa a venda atual (carrinho)
         System.out.println("Venda finalizada com sucesso!\n");
     }
-	
+
 	public static void imprimirNotaFiscal(int pedidoId, double totalVenda){
 		
 		System.out.println("\n========= NOTA FISCAL =========");
@@ -208,6 +208,7 @@ public class ProjetoLaura {
 	
 
     //ITEM 6
+    //: Percorre os vetores de histórico e imprime um resumo de todas as vendas finalizadas 
     static void historicoitensVendidos() { //matriz
 		//Percorre os vetores de histórico e imprime um resumo de todas as vendas finalizadas (ex: Pedido ID: 1001 - Valor Total: R$ 1070.50).
 		for (int id = 0; id < historicoIdsPedidos.lenght; i++){
@@ -285,21 +286,20 @@ public class ProjetoLaura {
 
     //Catálogo de produtos, ESTA FALTANDO DIZER A QUANTIDAD DE POSICOES EM CADA ARRAY!
     //  (OBRIGATÓTIO EM JAVA DETERMINAR O TAMANHO DA LISTA)!
-    int[] idsProdutos
-    int[] estoquesProdutos;
-    String[] nomesProdutos;
-    double[] precosProdutos;
-    // boolean base; , coloquei algo similar no main, não sei se foi a melhor escolha
+    int[] idsProdutos = new int[50];
+    int[] estoquesProdutos = new int[50];
+    String[] nomesProdutos = new String[50];
+    double[] precosProdutos = new double[50];
 
     //venda atual
-    int[] vendaAtualIds;
-    int[] vendaAtualQuantidades;
+    int[] vendaAtualIds = new int[50];
+    int[] vendaAtualQuantidades = new int[50];
 	int vendaAtualCont = 0;
 
     //Histórico de Vendas
-    int[] historicoIdsPedidos;
-    double[] historicoValoresPedidos;
-    int[][] historicoItensVendidos;
+    int[] historicoIdsPedidos = new int[50];
+    double[] historicoValoresPedidos = new double[50];
+    int[][] historicoItensVendidos = new int[50][3];
       
     public static void main(String[] args) { 
         Scanner input = new Scanner(System.in);
@@ -317,7 +317,7 @@ public class ProjetoLaura {
             switch (escolhaMenu) {
              case 1:  
               inicializarBase();
-              baseInicializada = true // agora pode continuar
+              baseInicializada = true; // agora pode continuar
               break;
              case 2:
                 catalogoProdutos();
