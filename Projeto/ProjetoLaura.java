@@ -38,9 +38,7 @@ public class ProjetoLaura {
 			if(idsProdutos[i] != 0 && estoquesProdutos[i] > 0) { //
 				System.out.printf("%d   |      %s       |      R$ %.2f    |     %d\n",idsProdutos[i], nomesProdutos[i], precosProdutos[i], estoquesProdutos[i]);
 			}
-			
 		}
-
     }
     
     //ITEM 3
@@ -49,17 +47,15 @@ public class ProjetoLaura {
         int id = entrada.nextInt();
 
         // Verifica se o ID existe no vetor de produtos  
-        
 		int indiceProduto = -1;  //-1 é um sinal de que ainda não achamos nada (pois não existe posição -1 em um vetor).
 		//Se no final do loop continuar -1, quer dizer que o produto não existe.
         
-			for (int i = 0; i < idsProdutos.length; i++) { //percorre a lista
+		for (int i = 0; i < idsProdutos.length; i++) { //percorre a lista
             if (idsProdutos[i] == id) {
                 indiceProduto = i; //guarda o indice onde o produto foi encontrado
                 break;
             }
         }
-
         if (indiceProduto == -1) {
             System.out.println("ID inválido!");
             return;
@@ -76,12 +72,11 @@ public class ProjetoLaura {
             return;
         }
 
-
         // Adiciona o item aos vetores da venda atual
         vendaAtualIds[indiceVenda] = id;
         vendaAtualQuantidades[indiceVenda] = quantidade;
         vendaAtualCont++; // contador global de quantos itens já foram adicionados na venda atual
-		 // Toda vez que você adiciona um item, ele soma +1.
+		// Toda vez que você adiciona um item, ele soma +1.
 
         System.out.println("Item adicionado com sucesso!");
     }
@@ -126,7 +121,7 @@ public class ProjetoLaura {
     }
 
     //ITEM 5
-    static void finalizarVenda() {
+    static void finalizarVenda(/*colocar parâmetros*/) {
 		//Verifica se existe algum produto na venda atual
 		if(vendaAtualCont == 0){ 
 			System.out.println("Nenhum item na venda atual.");
