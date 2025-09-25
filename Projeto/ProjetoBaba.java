@@ -132,8 +132,7 @@ public class Main {
     //ITEM 5
     static void finalizarVenda(int[] vendaAtualIds, int[] vendaAtualQuantidades,
 	                           int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos,
-	                           int[] historicoIdsPedidos, double[] historicoValoresPedidos, int[][] historicoItensVendidos,
-	                           int novoId) {
+	                           int[] historicoIdsPedidos, double[] historicoValoresPedidos, int[][] historicoItensVendidos) {
 		//Verifica se existe algum produto na venda atual
 		if(vendaAtualCont == 0){ 
 			System.out.println("Nenhum item na venda atual.");
@@ -372,8 +371,7 @@ public class Main {
               case 5:  
                 finalizarVenda(vendaAtualIds, vendaAtualQuantidades,
                                          idsProdutos, nomesProdutos, precosProdutos, estoquesProdutos,
-                                         historicoIdsPedidos, historicoValoresPedidos, historicoItensVendidos,
-                                         novoId);
+                                         historicoIdsPedidos, historicoValoresPedidos, historicoItensVendidos);
                 break;
              case 6:  
                 historicoitensVendidos(historicoIdsPedidos, historicoValoresPedidos);
