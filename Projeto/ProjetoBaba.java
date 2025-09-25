@@ -8,6 +8,7 @@ public class Main {
     static int historicoCont = 0; // contador
     static final int MAX_PRODUTOS = 50; // final = const (valor não pode ser alterado)
     static String  dataHora = "26/09/2025 09h00"; // Data e hora fixas para exemplo apenas
+	static int novoId = 1001;
 	
     // método estático que representa o menu
       static void menuOpcoes() {   
@@ -342,7 +343,6 @@ public class Main {
         double[] historicoValoresPedidos = new double[MAX_PRODUTOS];
         int[][] historicoItensVendidos = new int[MAX_PRODUTOS * MAX_PRODUTOS][3];
 
-		 int novoId = 1001;
 		
       	int escolhaMenu;
         boolean baseInicializada = false; // começa com a base não inicializada
