@@ -1,10 +1,12 @@
 import java.util.Scanner;
 public class Main {
 	
-	static Scanner input = new Scanner(System.in);
-	static int vendaAtualCont = 0;
-    static int historicoCont = 0;
-    static final int MAX_PRODUTOS = 50;
+	static Scanner input = new Scanner(System.in); 
+	//static = pode ser usado em qualquer método
+	
+	static int vendaAtualCont = 0; //contador
+    static int historicoCont = 0; // contador
+    static final int MAX_PRODUTOS = 50; // final = const (valor não pode ser alterado)
     static String  dataHora = "26/09/2025 09h00"; // Data e hora fixas para exemplo apenas
 	
     // método estático que representa o menu
@@ -26,6 +28,7 @@ public class Main {
     
     // ITEM 1
     static void inicializarBase(int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos) {
+		// Preenche os vetores do catálogo com dados pré-definidos
         idsProdutos[0] = 101; nomesProdutos[0] = "Mouse Game"; precosProdutos[0] = 150.00; estoquesProdutos[0] = 2; // quantidade em estoque
         idsProdutos[1] = 203; nomesProdutos[1] = "Teclado Mecanico"; precosProdutos[1] = 350.00; estoquesProdutos[1] = 1; 
         idsProdutos[2] = 301; nomesProdutos[2] = "Headset 7.1"; precosProdutos[2] = 420.50; estoquesProdutos[2] = 1;
@@ -96,20 +99,17 @@ public class Main {
             return; //
         }
 
-        System.out.printf("\nID |       Produto      | Valor unitário  | Estoque | Subtotal\n");
-        System.out.println("---------------------------------------------------------");
-
         double totalVenda = 0;
 
         for (int i = 0; i < vendaAtualCont; i++) { //Percorre os itens da venda atual
-            int id = vendaAtualIds[i];
-            int quantidade = vendaAtualQuantidades[i];
-
-            // Encontra o índice do produto para pegar nome e preço
+            int id = vendaAtualIds[i]; 
+            int quantidade = vendaAtualQuantidades[i]; 
+            
+			// Encontra o índice do produto para pegar nome e preço
             int indiceProduto = -1;  
             for (int j = 0; j < nomesProdutos.length; j++) {  
-                if (idsProdutos[j] == id) {
-                    indiceProduto = j;
+                if (idsProdutos[j] == id) { // id cadastrado no catálogo = id que está no carrinho (id)
+                    indiceProduto = j; // guarda o indice
                     break;
                 }
             }
@@ -119,7 +119,8 @@ public class Main {
             double subtotal = preco * quantidade;
 
             totalVenda += subtotal;
-
+			
+		
             System.out.printf("%d   |   %-12s   |   R$ %.2f     |   %d   |  R$ %.2f\n", id, nome, preco, quantidade, subtotal);
         }
 
@@ -131,7 +132,7 @@ public class Main {
     static void finalizarVenda(int[] vendaAtualIds, int[] vendaAtualQuantidades,
 	                           int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos,
 	                           int[] historicoIdsPedidos, double[] historicoValoresPedidos, int[][] historicoItensVendidos,
-	                           int proximoPedidoId) {
+	                           int novoId) {
 		//Verifica se existe algum produto na venda atual
 		if(vendaAtualCont == 0){ 
 			System.out.println("Nenhum item na venda atual.");
@@ -139,7 +140,7 @@ public class Main {
 		}
 
 		//Gera um novo ID para o pedido
-		int pedidoId = proximoPedidoId++;
+		int pedidoId = novoId++;
         double totalVenda = 0;
 
 		//cada venda finalizada fica registrada no vetor de IDs de pedidos. 
@@ -341,7 +342,7 @@ public class Main {
         double[] historicoValoresPedidos = new double[MAX_PRODUTOS];
         int[][] historicoItensVendidos = new int[MAX_PRODUTOS * MAX_PRODUTOS][3];
 
-		 int proximoPedidoId = 1001;
+		 int novoId = 1001;
 		
       	int escolhaMenu;
         boolean baseInicializada = false; // começa com a base não inicializada
@@ -372,7 +373,7 @@ public class Main {
                 finalizarVenda(vendaAtualIds, vendaAtualQuantidades,
                                          idsProdutos, nomesProdutos, precosProdutos, estoquesProdutos,
                                          historicoIdsPedidos, historicoValoresPedidos, historicoItensVendidos,
-                                         proximoPedidoId);
+                                         novoId);
                 break;
              case 6:  
                 historicoitensVendidos(historicoIdsPedidos, historicoValoresPedidos);
