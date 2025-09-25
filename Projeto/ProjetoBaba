@@ -5,6 +5,7 @@ public class Main {
 	static int vendaAtualCont = 0;
     static int historicoCont = 0;
     static final int MAX_PRODUTOS = 50;
+    static String  dataHora = "26/09/2025 09h00"; // Data e hora fixas para exemplo apenas
 	
     // método estático que representa o menu
       static void menuOpcoes() {   
@@ -184,32 +185,48 @@ public class Main {
 		                                  int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos,
 		                                  int vendaAtualCont, double totalVenda){
 		
-		System.out.println("\n========= NOTA FISCAL =========");
-        System.out.println("Pedido nº " + pedidoId);
-        System.out.println("ID | Produto        | Quantidade | VL. UNIT. | VL. TOTAL");
-        System.out.println("---------------------------------------------------------");
 
-        for (int i = 0; i < vendaAtualCont; i++) { //Percorre todos os itens que o cliente adicionou à venda atual
+        System.out.println("*********************************************************************************************");
+        System.out.println("*                                      MACKSHOP                                            *");
+        System.out.println("*                                CNPJ: 12.345.678/0001-99                                  *");
+        System.out.println("*********************************************************************************************");
+        System.out.println("*                          NOTA FISCAL - VENDA AO CONSUMIDOR                               *");
+        System.out.printf ("* Pedido ID: %d                                                                          *\n", pedidoId);
+        System.out.printf ("* Data de Emissão: %s                                                        *\n", dataHora);
+        System.out.println("*********************************************************************************************");
+        System.out.printf ("* %s| %s| %s| %s| %s| %s *\n", "#", "ID", "DESCRIÇÃO", "QTD", "VL. UNIT.", "VL. TOTAL");
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        double subtotal = 0;
+        for (int i = 0; i < vendaAtualCont; i++) {
             int id = vendaAtualIds[i];
             int qtd = vendaAtualQuantidades[i];
-			int indiceProduto = -1; //Indica que ainda não encontramos o produto no catálogo.
-            for (int j = 0; j < idsProdutos.length; j++) { //Procura a posição do produto no catálogo para acessar nome e preço.
+
+            int indiceProduto = -1;
+            for (int j = 0; j < idsProdutos.length; j++) {
                 if (idsProdutos[j] == id) {
                     indiceProduto = j;
                     break;
                 }
             }
-			String nome = nomesProdutos[indiceProduto];
-            double preco = precosProdutos[indiceProduto];
-            double subtotal = preco * qtd;
 
-            System.out.printf("%d | %-12s | %d | R$ %.2f | R$ %.2f\n", id, nome, qtd, preco, subtotal);
+            String nome = nomesProdutos[indiceProduto];
+            double preco = precosProdutos[indiceProduto];
+            double totalItem = preco * qtd;
+            subtotal += totalItem;
+
+            System.out.printf("* %d| %d| %s| %d| R$ %.2f| R$ %.2f *\n",
+                              (i+1), id, nome, qtd, preco, totalItem);
         }
 
-        System.out.println("---------------------------------------------------------");
-        System.out.printf("TOTAL: R$ %.2f\n", totalVenda);
-        System.out.println("===============================\n");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("* %s R$ %.2f *\n", "SUBTOTAL", subtotal);
+        System.out.printf("* %s R$ %.2f *\n", "TOTAL", totalVenda);
+        System.out.println("*********************************************************************************************");
+        System.out.println("*                OBRIGADO PELA PREFERÊNCIA! VOLTE SEMPRE!                                   *");
+        System.out.println("*********************************************************************************************\n");
     }
+	
 
 	
 
