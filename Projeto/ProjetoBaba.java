@@ -24,7 +24,7 @@ public class Main {
         """);
 	}
     
-    // ITEM 2
+    // ITEM 1
     static void inicializarBase(int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos) {
         idsProdutos[0] = 101; nomesProdutos[0] = "Mouse Game"; precosProdutos[0] = 150.00; estoquesProdutos[0] = 2; // quantidade em estoque
         idsProdutos[1] = 203; nomesProdutos[1] = "Teclado Mecanico"; precosProdutos[1] = 350.00; estoquesProdutos[1] = 1; 
