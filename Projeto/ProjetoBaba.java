@@ -139,19 +139,19 @@ public class Main {
 			return;
 		}
 
-		//Gera um novo ID para o pedido
+		//Gera um novo ID para o pedido e o muda para cada pedido
 		int pedidoId = novoId++;
         double totalVenda = 0;
 
 		//cada venda finalizada fica registrada no vetor de IDs de pedidos. 
 		historicoIdsPedidos[historicoCont] = pedidoId;  
 		
-		for (int i = 0; i < vendaAtualCont; i++) { //Pega o ID e a quantidade do item na venda atual
+		for (int i = 0; i < vendaAtualCont; i++) { 
             int id = vendaAtualIds[i];
             int qtd = vendaAtualQuantidades[i];
 
 			int indiceProduto = -1;
-            for (int j = 0; j < idsProdutos.length; j++) { //Encontra o índice do produto no catálogo (idsProdutos) para acessar preço e estoque
+            for (int j = 0; j < idsProdutos.length; j++) {
                 if (idsProdutos[j] == id) {
                     indiceProduto = j;
                     break;
@@ -254,22 +254,24 @@ public class Main {
 
         System.out.print("Digite o ID de Pedido: ");
         int idPedidoBuscado = input.nextInt();
-
+		
+		//guarda os ids e a quantidade dos produtos da venda
         int[] vendaIds = new int[MAX_PRODUTOS];
         int[] vendaQtde = new int[MAX_PRODUTOS];
-        int cont = 0;
+       
+		int cont = 0; 
         double totalVenda = 0;
 		
 		System.out.printf("--Nota Fiscal do Pedido %d--\n", idPedidoBuscado);
 
         for (int i = 0; i < historicoItensVendidos.length; i++) {
-            if (historicoItensVendidos[i][0] == idPedidoBuscado) {
-                vendaIds[cont] = historicoItensVendidos[i][1];
-                vendaQtde[cont] = historicoItensVendidos[i][2];
+            if (historicoItensVendidos[i][0] == idPedidoBuscado) { //historicoItensVendidos[i][0] contém o Id do pedido 
+                vendaIds[cont] = historicoItensVendidos[i][1]; // guarda o ID do produto
+                vendaQtde[cont] = historicoItensVendidos[i][2]; // guarda a quantidade vendida
 
                 int indiceProduto = -1;
                 for (int j = 0; j < idsProdutos.length; j++) {
-                    if (idsProdutos[j] == vendaIds[cont]) {
+                    if (idsProdutos[j] == vendaIds[cont]) { //Compara o ID do catálogo com o ID do item da venda
                         indiceProduto = j;
                         break;
                     }
@@ -277,6 +279,8 @@ public class Main {
 
                 totalVenda += precosProdutos[indiceProduto] * vendaQtde[cont];
                 cont++;
+				//cont é usado como índice para preencher os arrays vendaIds e vendaQtde
+				//Cada vez que encontramos um item do pedido no histórico, cont aumenta para passar para a próxima posição do array.
             }
         }
 
@@ -297,18 +301,18 @@ public class Main {
         for(int i = 0; i < idsProdutos.length; i++) {
             if (idsProdutos[i] == idDigitado) {
                 indiceID = i;
-                break; // para o laço e sai dele
+                break; 
             }
         }
 
         if (indiceID == -1) {
             System.out.println("ID inválido!");
-            return; // sai do método aqui, não pergunta quantidade
+            return; 
         }
 
 		System.out.print("Digite a nova quantidade de estoque:");
 		int quant = input.nextInt();
-        estoquesProdutos[indiceID] += quant;
+        estoquesProdutos[indiceID] += quant; //soma a quantidade nova ao estoque atual,
 
        System.out.println("Estoque atualizado! ID: " + idDigitado + " Novo Estoque: " + estoquesProdutos[indiceID]);
 
@@ -326,7 +330,8 @@ public class Main {
     }
       
     public static void main(String[] args) { 
-				// Catálogo de produtos
+		
+		// Catálogo de produtos
 	    int[] idsProdutos = new int[MAX_PRODUTOS];
         int[] estoquesProdutos = new int[MAX_PRODUTOS];
         String[] nomesProdutos = new String[MAX_PRODUTOS];
