@@ -32,12 +32,12 @@ public class Main {
 
 		vendaAtualCont = 0;
         historicoCont = 0;
-        System.out.print("Base iniciada com sucesso!"); 
+        System.out.println("Base iniciada com sucesso!"); 
     }
     
     //ITEM 2
     static void catalogoProdutos(int[] idsProdutos, String[] nomesProdutos, double[] precosProdutos, int[] estoquesProdutos) {
-		System.out.print("Lista de produtos com estoque positivo:");
+		System.out.println("Lista de produtos com estoque positivo:");
 		System.out.printf("%-5s | %-20s | %-15s | %-6s\n", "ID", "Produto", "Valor unitário", "Estoque");
         System.out.println("-------------------------------------------------------");
 		//Percorre os produtos e imprime os que estão com estoque positivo
@@ -95,7 +95,7 @@ public class Main {
             return; //
         }
 
-        System.out.printf("\nID |       Produto      | Valor unitário  | Estoque ");
+        System.out.printf("\nID |       Produto      | Valor unitário  | Estoque | Subtotal\n");
         System.out.println("---------------------------------------------------------");
 
         double totalVenda = 0;
@@ -119,7 +119,7 @@ public class Main {
 
             totalVenda += subtotal;
 
-            System.out.printf("%d   |   %-12s   |   %d   |   R$ %.2f     |    R$ %.2f\n", id, nome, quantidade, preco, subtotal);
+            System.out.printf("%d   |   %-12s   |   R$ %.2f     |   %d   |  R$ %.2f\n", id, nome, preco, quantidade, subtotal);
         }
 
         System.out.println("---------------------------------------------------------");
@@ -330,7 +330,7 @@ public class Main {
         boolean baseInicializada = false; // começa com a base não inicializada
         do {
             menuOpcoes();
-            System.out.print("Selecione uma opção (obrigatório iniciar base primeiro):");
+            System.out.print("Selecione uma opção:");
             escolhaMenu = input.nextInt();
 
             if (baseInicializada != true && escolhaMenu != 1) {
