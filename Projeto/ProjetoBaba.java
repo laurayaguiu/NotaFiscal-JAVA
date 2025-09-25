@@ -9,9 +9,9 @@ public class Main {
 	
     // método estático que representa o menu
       static void menuOpcoes() {   
-        System.out.println("""
+      System.out.println("""
         =========== MENU ===========
-		1. Inicializar base
+        1. Inicializar base
         2. Exibir catálogo de produtos
         3. Adicionar item à venda
         4. Ver resumo da venda atual
